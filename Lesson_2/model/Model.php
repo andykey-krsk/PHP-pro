@@ -1,5 +1,9 @@
 <?php
-//TODO не забудьте сделать use IModel
+
+namespace app\model;
+
+use app\interfaces\IModel;
+use app\engine\Db;
 
 abstract class Model implements IModel
 {

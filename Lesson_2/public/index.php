@@ -1,6 +1,7 @@
 <?php
-//use app\model\{Product, Users};
-//use app\engine\Db;
+use app\autoload\Autoload;
+use app\model\{Product,Users};
+use app\engine\Db;
 
 include "../engine/Autoload.php";
 
@@ -17,5 +18,5 @@ echo $product->getOne(2);
 //echo $users->getOne(1);
 //$db = new Db();
 
-var_dump($product);
+//var_dump($product);
 //var_dump($db);
