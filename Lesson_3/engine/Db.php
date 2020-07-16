@@ -12,18 +12,15 @@ class Db
         'driver' => 'mysql',
         'host' => 'localhost',
         'login' => 'root',
-        'password' => 'root',
+        'password' => '12345',
         'database' => 'shop',
         'charset' => 'utf8'
     ];
 
     private $connection = null;
 
-
-
     private function getConnection()
     {
-
         if (is_null($this->connection)) {
             $this->connection = new \PDO(
                 $this->prepareDSNString(),
@@ -39,15 +36,20 @@ class Db
     //params = ['id' => 1]
     private function query($sql, $params)
     {
-        var_dump($sql, $params);
+        //var_dump($sql, $params);
         $pdoStatement = $this->getConnection()->prepare($sql);
         $pdoStatement->execute($params);
         return $pdoStatement;
     }
 
-    public function queryObject($sql, $params, $class) {
+    public function queryObject($sql, $params, $class)
+    {
         //TODO сделайте, чтобы PDO возвращал объект класса $class используя setAttribute
-
+        //$this->getConnection()->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
+        //return $this->query($sql, $params)->fetch();
+        //return $this->query($sql, $params)->fetch(\PDO::FETCH_OBJ);
+        var_dump($class);
+        return $this->query($sql, $params)->fetch(\PDO::FETCH_CLASS, 'Product');
     }
 
     //params = ['limit1'=>1, 'limit2'=>2]
@@ -71,10 +73,11 @@ class Db
     }
 
     public function lastInsertId() {
-        //TODO верните последний id операции
+        //TODO_ верните последний id операции
+        return $this->getConnection()->lastInsertId();
     }
 
-    public function execute($sql, $params) {
+    public function execute($sql, $params = []) {
         return $this->query($sql, $params);
     }
 
@@ -87,5 +90,4 @@ class Db
     {
         return $this->query($sql, $params)->fetchAll();
     }
-
 }

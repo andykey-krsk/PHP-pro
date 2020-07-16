@@ -2,7 +2,7 @@
 
 namespace app\model;
 
-use app\traits\TSingletone;
+//use app\traits\TSingletone;
 
 class Product extends Model
 {
@@ -11,7 +11,6 @@ class Product extends Model
     public $description;
     public $price;
 
-
     public function __construct($name = null, $description = null, $price = null)
     {
         $this->name = $name;
@@ -19,11 +18,7 @@ class Product extends Model
         $this->price = $price;
     }
 
-
     public function getTableName() {
         return 'products';
     }
-
-
-
 }

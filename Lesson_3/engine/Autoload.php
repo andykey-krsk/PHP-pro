@@ -4,7 +4,6 @@ namespace app\engine;
 
 class Autoload
 {
-
     public function loadClass($className)
     {
         $fileName = str_replace(['app', '\\'], [ROOT_DIR, DS], $className) . '.php';
@@ -12,5 +11,4 @@ class Autoload
             include $fileName;
         }
     }
-
 }
