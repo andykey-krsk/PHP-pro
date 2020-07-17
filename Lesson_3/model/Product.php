@@ -18,7 +18,8 @@ class Product extends Model
         $this->price = $price;
     }
 
-    public function getTableName() {
+    public function getTableName()
+    {
         return 'products';
     }
 }

@@ -43,7 +43,6 @@ abstract class Model implements IModel
         foreach ($this as $key => $value) {
             //TODO_ исключить id при форминовании строки запроса
             if ($key != 'id') {
-                var_dump($key, $value);
                 $column_name .= "`{$key}`, ";
                 $values .= "'{$value}', ";
             }
@@ -57,6 +56,26 @@ abstract class Model implements IModel
         Db::getInstance()->execute($sql);
         //TODO_ не забудьте получить id вставленной записи
         $this->id = Db::getInstance()->lastInsertId();
+    }
+
+    public function delete()
+    {
+        $sql = "DELETE FROM {$this->getTableName()} WHERE id={$this->id}";
+        Db::getInstance()->execute($sql);
+    }
+
+    public function update()
+    {
+        $updateString = "";
+        foreach ($this as $key => $value) {
+            if ($key != 'id') {
+                var_dump($key, $value);
+                $updateString .= "`{$key}`='{$value}', ";
+            }
+        }
+        $updateString = rtrim($updateString, ", ");
+        $sql = "UPDATE {$this->getTableName()} SET {$updateString} WHERE id={$this->id}";
+        Db::getInstance()->execute($sql);
     }
 
     abstract public function getTableName();
