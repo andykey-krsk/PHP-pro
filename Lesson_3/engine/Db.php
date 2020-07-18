@@ -45,11 +45,8 @@ class Db
     public function queryObject($sql, $params, $class)
     {
         //TODO сделайте, чтобы PDO возвращал объект класса $class используя setAttribute
-        //$this->getConnection()->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
-        //return $this->query($sql, $params)->fetch();
-        //return $this->query($sql, $params)->fetch(\PDO::FETCH_OBJ);
-        var_dump($class);
-        return $this->query($sql, $params)->fetch(\PDO::FETCH_CLASS, 'Product');
+        $this->getConnection()->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
+        return $this->query($sql, $params)->fetch();
     }
 
     //params = ['limit1'=>1, 'limit2'=>2]
