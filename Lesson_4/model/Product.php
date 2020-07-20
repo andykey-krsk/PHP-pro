@@ -11,16 +11,13 @@ class Product extends DbModel
     public $description;
     public $price;
 
-    /*
-     * оптимизация update
-    protected $params = [
+
+    // оптимизация update
+    /*protected $params = [
         'name' => false,
         'description' => false,
         'price' => false
-    ];
-*/
-
-
+    ];*/
 
     public function __construct($name = null, $description = null, $price = null)
     {
@@ -29,11 +26,7 @@ class Product extends DbModel
         $this->price = $price;
     }
 
-
     public static function getTableName() {
         return 'products';
     }
-
-
-
 }

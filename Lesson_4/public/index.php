@@ -36,9 +36,15 @@ if (class_exists($controllerClass)) {
 //$product = new Product();
 //$product->delete();
 
-//$product = Product::getOne(4);
-//$product->price = 34;
-//$product->save();
+$product = Product::getOne(2);
+$product->price = "34";
+var_dump($product);
+$product->save();
+
+$product = Product::getOne(2);
+$product->price = "55";
+var_dump($product);
+$product->save();
 
 //var_dump($product);
 //var_dump(get_class_methods($product));

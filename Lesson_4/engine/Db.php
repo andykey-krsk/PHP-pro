@@ -12,18 +12,15 @@ class Db
         'driver' => 'mysql',
         'host' => 'localhost',
         'login' => 'root',
-        'password' => 'root',
+        'password' => '12345',
         'database' => 'shop',
         'charset' => 'utf8'
     ];
 
     private $connection = null;
 
-
-
     private function getConnection()
     {
-
         if (is_null($this->connection)) {
             $this->connection = new \PDO(
                 $this->prepareDSNString(),
@@ -35,8 +32,6 @@ class Db
         return $this->connection;
     }
 
-    //sql = "SELECT * FROM products WHERE id = :id"
-    //params = ['id' => 1]
     private function query($sql, $params)
     {
         $pdoStatement = $this->getConnection()->prepare($sql);
@@ -44,9 +39,8 @@ class Db
         return $pdoStatement;
     }
 
-
-
     //params = ['limit1'=>1, 'limit2'=>2]
+    //TODO Limit
     private function queryLimit($sql, $page)
     {
         $pdoStatement = $this->getConnection()->prepare($sql);
@@ -79,16 +73,13 @@ class Db
     }
 
     public function queryObject($sql, $params, $class) {
-        //TODO сделайте, чтобы PDO возвращал объект класса $class используя setAttribute
         $statement = $this->query($sql, $params);
         $statement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $class);
         return $statement->fetch();
     }
 
-
     public function queryAll($sql, $params = [])
     {
         return $this->query($sql, $params)->fetchAll();
     }
-
 }
