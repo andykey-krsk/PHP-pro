@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\controllers;
-
 
 abstract class Controller
 {
@@ -30,7 +28,6 @@ abstract class Controller
         } else {
             return $this->renderTemplate($template, $params);
         }
-
     }
 
     public function renderTemplate($template, $params = []) {
@@ -42,5 +39,4 @@ abstract class Controller
         }
         return ob_get_clean();
     }
-
 }

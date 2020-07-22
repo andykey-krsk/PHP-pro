@@ -49,20 +49,31 @@ abstract class DbModel extends Model
         $this->id = Db::getInstance()->lastInsertId();
     }
 
-    //TODO сделать UPDATE в идеале, запрос должен содержать только изменившиеся поля
+    //TODO_ сделать UPDATE в идеале, запрос должен содержать только изменившиеся поля
     public function update()
     {
         $params = [];
         $updateString = [];
+        $params[":id"] = $this->id;
         foreach ($this as $key => $value) {
-            $params[":{$key}"] = $value;
-            if ($key == "id") continue;
-            $updateString[] = "`{$key}`= :{$key}";
+            //if ($key == "id") $params[":{$key}"] = $value;
+            if ($this->params["{$key}"]){
+                $params[":{$key}"] = $value;
+                $updateString[] = "`{$key}`=:{$key}";
+            }
         }
+
         $updateString = implode(", ", $updateString);
         $tableName = static::getTableName();
-        $sql = "UPDATE {$tableName} SET {$updateString} WHERE id = :id";
+        $sql = "UPDATE {$tableName} SET {$updateString} WHERE id=:id";
         Db::getInstance()->execute($sql, $params);
+
+        //можно еще сделать проверку на удачное завершение операции
+        // и только потом менять маркеры в исходное состояние
+        foreach ($params as $key=>$value){
+            $key =ltrim($key,":");
+            $this->params["{$key}"] = false;
+        }
     }
 
     public function save()
@@ -73,7 +84,7 @@ abstract class DbModel extends Model
             $this->update();
     }
 
-    public function delete()
+    public static function delete()
     {
         $tableName = static::getTableName();
         $sql = "DELETE FROM {$tableName} WHERE id = :id";

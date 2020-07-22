@@ -1,6 +1,8 @@
 <?php
-//TODO сделать путь абсолютным
-include '../config/config.php';
+//TODO_ сделать путь абсолютным
+define("ROOT", dirname(__DIR__));
+
+include ROOT . "/config/config.php";
 
 use app\model\{Product, Users};
 use app\engine\Autoload;
@@ -9,7 +11,7 @@ use app\engine\Autoload;
  * @var Product $product
  */
 
-include "../engine/Autoload.php";
+include ROOT . "/engine/Autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
@@ -36,15 +38,19 @@ if (class_exists($controllerClass)) {
 //$product = new Product();
 //$product->delete();
 
-$product = Product::getOne(2);
-$product->price = "34";
-var_dump($product);
-$product->save();
+//$product = Product::getOne(2);
+//$product->price = "55";
+//$product->name = "Пицца";
+//var_dump($product);
+//$product->save();
 
-$product = Product::getOne(2);
-$product->price = "55";
-var_dump($product);
-$product->save();
+//$product = Product::getOne(2);
+//var_dump($product);
+
+//$product = Product::getOne(1);
+//$product->price = "55";
+//var_dump($product);
+//$product->save();
 
 //var_dump($product);
 //var_dump(get_class_methods($product));

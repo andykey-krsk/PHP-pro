@@ -10,7 +10,7 @@ abstract class Model implements IModel
 {
     public function __set($name, $value)
     {
-        //$this->params[$name] = true;
+        $this->params[$name] = true;
         $this->$name = $value;
     }
 

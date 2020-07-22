@@ -6,8 +6,6 @@ use app\model\Product;
 
 class ProductController extends Controller
 {
-
-
     public function actionIndex()
     {
         echo $this->render('catalog', [
@@ -22,7 +20,4 @@ class ProductController extends Controller
             'product' => Product::getOne($id)
         ]);
     }
-
-
-
 }

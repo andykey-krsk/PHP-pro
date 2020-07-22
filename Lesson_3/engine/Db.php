@@ -44,7 +44,7 @@ class Db
 
     public function queryObject($sql, $params, $class)
     {
-        //TODO сделайте, чтобы PDO возвращал объект класса $class используя setAttribute
+        //TODO_ сделайте, чтобы PDO возвращал объект класса $class используя setAttribute
         $this->getConnection()->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
         return $this->query($sql, $params)->fetch();
     }
