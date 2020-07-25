@@ -7,6 +7,7 @@ include ROOT . "/config/config.php";
 use app\model\{Product, Users};
 use app\engine\Autoload;
 use app\engine\Render;
+use app\engine\TwigRender; //use
 
 /**
  * @var Product $product
@@ -14,9 +15,7 @@ use app\engine\Render;
 
 include ROOT . "/engine/Autoload.php";
 
-require_once '../../vendor/autoload.php';
-
-//TODO_ зарегистрируйте автозагрузчик composer
+require_once '../../vendor/autoload.php'; //autoload
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
@@ -28,7 +27,7 @@ $actionName = $url[2];
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
 
 if (class_exists($controllerClass)) {
-    $controller = new $controllerClass(new Render());
+    $controller = new $controllerClass(new TwigRender());//render
     $controller->runAction($actionName);
 } else {
     Die("Контроллер не существует!");

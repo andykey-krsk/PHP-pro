@@ -40,6 +40,6 @@ class FeedbackController extends Controller
             $feedback->feedback = $_POST['feedback_text'];
         }
         $feedback->save();
-        header("Location: /feedback");
+        header("Location: /feedback/");
     }
 }

@@ -20,14 +20,13 @@ class BasketController extends Controller
         $quantyti = 1;
         $basket = new Basket("{$_POST['product_id']}", "{$_POST['product_price']}", "{$quantyti}", "{$session}");
         $basket->save();
-
-        header("Location: {$page}");
+        header("Location:" . $_SERVER['HTTP_REFERER']);
     }
 
     public function actionDelete()
     {
         $id = (int)$_GET['id'];
         Basket::getOne($id)->delete();
-        header("Location: /basket/");
+        header("Location:" . $_SERVER['HTTP_REFERER']);
     }
 }
