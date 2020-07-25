@@ -4,9 +4,14 @@ namespace app\model;
 
 class Users extends DbModel
 {
-    public $id;
-    public $login;
-    public $pass;
+    protected $id;
+    protected $login;
+    protected $pass;
+
+    protected $props = [
+        'login' => false,
+        'pass' => false
+    ];
 
     /**
      * Users constructor.
@@ -19,9 +24,7 @@ class Users extends DbModel
         $this->pass = $pass;
     }
 
-
     public static function getTableName() {
         return 'users';
     }
-
 }

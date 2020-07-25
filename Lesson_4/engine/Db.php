@@ -39,8 +39,6 @@ class Db
         return $pdoStatement;
     }
 
-    //params = ['limit1'=>1, 'limit2'=>2]
-    //TODO Limit
     private function queryLimit($sql, $page)
     {
         $pdoStatement = $this->getConnection()->prepare($sql);

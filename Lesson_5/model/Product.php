@@ -11,15 +11,11 @@ class Product extends DbModel
     protected $description;
     protected $price;
 
-
     protected $props = [
         'name' => false,
         'description' => false,
         'price' => false
     ];
-
-
-
 
     public function __construct($name = null, $description = null, $price = null)
     {
@@ -28,11 +24,8 @@ class Product extends DbModel
         $this->price = $price;
     }
 
-
-    public static function getTableName() {
+    public static function getTableName()
+    {
         return 'products';
     }
-
-
-
 }

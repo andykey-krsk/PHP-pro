@@ -21,7 +21,6 @@ $product = new Product("Одежда", "Брендовая", 2);
 //$product->price = 1;
 //$product->update();
 //var_dump($product);
-//TODO* сделайте чтобы getOne возвращал объект с данными и с МЕТОДАМИ для его обработки
 var_dump($product->getOne(2));
 var_dump($product->getObject(3));
 

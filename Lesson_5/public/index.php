@@ -1,6 +1,8 @@
 <?php
-//TODO сделать путь абсолютным
-include '../config/config.php';
+session_start();
+define("ROOT", dirname(__DIR__));
+
+include ROOT . "/config/config.php";
 
 use app\model\{Product, Users};
 use app\engine\Autoload;
@@ -10,12 +12,13 @@ use app\engine\Render;
  * @var Product $product
  */
 
-include "../engine/Autoload.php";
+include ROOT . "/engine/Autoload.php";
 
-//TODO зарегистрируйте автозагрузчик composer
+require_once '../../vendor/autoload.php';
+
+//TODO_ зарегистрируйте автозагрузчик composer
 
 spl_autoload_register([new Autoload(), 'loadClass']);
-
 
 $url = explode('/', $_SERVER['REQUEST_URI']);
 
@@ -33,8 +36,8 @@ if (class_exists($controllerClass)) {
 
 die();
 
-//$product = new Product("Одежда", "Брендовая", 2);
-//$product->save();
+$product = new Product("Одежда", "Брендовая", 200);
+$product->save();
 
 //$user = new Users("user", "4454");
 //$user->save();
@@ -44,6 +47,7 @@ die();
 
 $product = Product::getOne(3);
 $product->price = 100;
+echo $product->error;
 $product->save();
 
 //var_dump($product);
@@ -53,4 +57,3 @@ $product->save();
 
 //$users = new Users();
 //var_dump($users->getAll());
-
