@@ -27,7 +27,7 @@ $actionName = $url[2];
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
 
 if (class_exists($controllerClass)) {
-    $controller = new $controllerClass(new TwigRender());//render
+    $controller = new $controllerClass(new Render());//render
     $controller->runAction($actionName);
 } else {
     Die("Контроллер не существует!");

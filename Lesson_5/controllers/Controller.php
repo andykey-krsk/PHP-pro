@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\engine\Render;
 use app\interfaces\IRenderer;
 use app\model\Basket;
+use app\model\Users;
 
 abstract class Controller
 {
@@ -35,7 +36,9 @@ abstract class Controller
         if ($this->useLayout) {
             return $this->renderTemplate("layouts/{$this->layout}", [
                 'menu' => $this->renderTemplate('menu', [
-                    'count' => Basket::getCount(session_id())
+                    'count' => Basket::getCountWhere('session', session_id()),
+                    'auth' => Users::isAuth(),
+                    'username' => Users::getName()
                 ]),
                 'content' => $this->renderTemplate($template, $params)
             ]);

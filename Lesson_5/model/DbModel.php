@@ -22,6 +22,19 @@ abstract class DbModel extends Model
         $sql = "SELECT * FROM {$tableName} LIMIT ?";
         return Db::getInstance()->queryLimit($sql, $page);
     }
+    public static function getOneWhere($field, $value) {
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE `{$field}`=:value";
+        return Db::getInstance()->queryObject($sql, ["value" => $value], static::class);
+    }
+
+    //TODO сделайте аналогичный метод getSummWhere
+
+    public static function getCountWhere($field, $value) {
+        $tableName = static::getTableName();
+        $sql = "SELECT count(id) as count FROM {$tableName} WHERE `{$field}`=:value";
+        return Db::getInstance()->queryOne($sql, ["value" => $value])['count'];
+    }
 
     public static function getAll()
     {
