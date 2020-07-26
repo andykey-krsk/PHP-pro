@@ -1,0 +1,9 @@
+<h2>Корзина</h2>
+{% for item in basket %}
+    <div id="item{{ item.basket_id }}">
+        <p><strong>{{ item.name }}. </strong>
+            Стоимость: {{ item.price }}. Колличество: {{ item.quantyti }}.
+            <a href="/basket/delete/?id={{ item.basket_id }}">[удалить]</a>
+        </p>
+    </div>
+{% endfor %}
