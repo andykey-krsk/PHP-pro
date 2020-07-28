@@ -33,7 +33,7 @@ class Users extends DbModel
 
     public static function auth($login, $pass) {
         $user = Users::getOneWhere('login', $login);
-        if ($pass == $user->pass) {
+        if (password_verify($pass, $user->pass)) {
             $_SESSION['login'] = $login;
             $_SESSION['id'] = $user->id;
             return true;
