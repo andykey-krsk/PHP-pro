@@ -3,17 +3,16 @@
 
 namespace app\controllers;
 
-
 use app\model\Users;
+use app\engine\Request;
 
 class AuthController extends Controller
 {
     public function actionLogin() {
 
-        //TODO переписать получение данных через Request
-
-        $login = $_POST['login'];
-        $pass = $_POST['pass'];
+        //TODO_ переписать получение данных через Request
+        $login = (new Request())->getParams()['login'];
+        $pass = (new Request())->getParams()['pass'];
 
         if (Users::auth($login, $pass)) {
             header("Location:" . $_SERVER['HTTP_REFERER']);
@@ -26,5 +25,4 @@ class AuthController extends Controller
         session_destroy();
         header("Location:" . $_SERVER['HTTP_REFERER']);
     }
-
 }

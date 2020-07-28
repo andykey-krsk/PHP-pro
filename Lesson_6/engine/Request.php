@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\engine;
-
 
 class Request
 {
@@ -65,6 +63,4 @@ class Request
     {
         return $this->method;
     }
-
-
 }

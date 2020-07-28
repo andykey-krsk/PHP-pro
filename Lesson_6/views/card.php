@@ -7,6 +7,5 @@
     <p>Цена: <?= $product->price ?></p>
     <input type="hidden" name="product_price" value="<?= $product->price ?>">
     <input type="hidden" name="product_id" value="<?= $product->id ?>">
-    <input type="hidden" name="page" value="<?= $_SERVER['REQUEST_URI'] ?>">
     <button type="submit" name="buy">Купить</button>
 </form>

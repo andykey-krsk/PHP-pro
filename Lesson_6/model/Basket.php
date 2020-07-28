@@ -20,12 +20,12 @@ class Basket extends DbModel
         'session' => false,
     ];
 
-    public function __construct($product = null, $price = null, $quantyti = null)
+    public function __construct($session=null, $product = null, $price = null, $quantyti = null)
     {
         $this->product = $product;
         $this->price = $price;
         $this->quantyti = $quantyti;
-        $this->session = session_id();
+        $this->session = $session;
     }
 
     public static function getTableName()
@@ -40,13 +40,5 @@ class Basket extends DbModel
            FROM basket, products
            WHERE basket.product = products.id AND basket.session = :session";
         return Db::getInstance()->queryAll($sql, ['session' => $session_id]);
-    }
-
-    public static function getCount($session_id)
-    {
-        //c суммой пока не получилось
-        $tableName = static::getTableName();
-        $sql = "SELECT product_quantyti FROM {$tableName} WHERE session_id = :session_id";
-        return Db::getInstance()->queryAll($sql, ['session_id' => $session_id]);
     }
 }

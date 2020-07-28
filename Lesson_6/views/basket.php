@@ -1,23 +1,40 @@
 <h2>Корзина</h2>
 <? if (isset($basket)):
-    $total_price = 0;
-    $count = 1;
     foreach ($basket as $item): ?>
-        <div id="item<?= $item['basket_id'] ?>">
-            <p><?= $count++ ?>. <strong><?= $item['name'] ?>. </strong>
-                Стоимость: <?= $item['price'] ?>. Колличество: <?= $item['quantyti'] ?>.
-                <a href="/basket/delete/?id=<?= $item['basket_id'] ?>">[удалить]</a>
+        <div id="<?= $item['basket_id'] ?>">
+            <p><strong><?= $item['name'] ?>. </strong>
+                Стоимость: <?= $item['price'] ?> рублей
+                <button data-id="<?= $item['basket_id'] ?>" class="delete">удалить</button>
             </p>
         </div>
-        <? $total_price += (float)$item['price'] * (int)$item['quantyti'];
-    endforeach ?>
-    Всего: <?= $total_price ?> рублей.
+    <? endforeach ?>
+    Всего: <span id="total"><?= $total_price ?></span> рублей.
 <? else: ?>
     <p>Корзина пуста</p>
 <? endif ?>
 
 <script>
-    //TODO отобразить сумму товаров в корзине
-    //TODO реализовать удаление из корзины асинхпронно
-    //.remove()
+    let buttons = document.querySelectorAll('.delete');
+    buttons.forEach((elem) => {
+        elem.addEventListener('click', () => {
+            let id = elem.getAttribute('data-id');
+            (
+                async () => {
+                    const response = await fetch('/basket/delete/', {
+                        method: 'POST',
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            id: id
+                        })
+                    });
+                    const answer = await response.json();
+                    document.getElementById('count').innerText = answer.count;
+                    document.getElementById('total').innerText = answer.total;
+                    document.getElementById(id).remove();
+                }
+            )();
+        })
+    });
 </script>
