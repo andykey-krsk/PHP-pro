@@ -1,5 +1,5 @@
 <h2>Корзина</h2>
-<? if (isset($basket)):
+<? if (!empty($basket)):
     foreach ($basket as $item): ?>
         <div id="<?= $item['basket_id'] ?>">
             <p><strong><?= $item['name'] ?>. </strong>
@@ -8,7 +8,7 @@
             </p>
         </div>
     <? endforeach ?>
-    Всего: <span id="total"><?= $total_price ?></span> рублей.
+    Всего: <span id="total"><?= 0 + $total_price ?></span> рублей.
 <? else: ?>
     <p>Корзина пуста</p>
 <? endif ?>

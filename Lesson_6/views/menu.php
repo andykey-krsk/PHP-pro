@@ -1,4 +1,5 @@
 <? if (!$auth) : ?>
+    Добро пожаловать <?= $username ?>!<br><br>
     <form action="/auth/login/" method="post">
         <input type="text" name="login" placeholder="admin" value="admin">
         <input type="password" name="pass" placeholder="123" value="123">
