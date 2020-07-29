@@ -21,10 +21,10 @@ class FeedbackController extends Controller
         ]);
     }
 
-    /*public function actionDelete()
+    public function actionDelete()
     {
         echo $this->render('feedback', [
-            'feedback' => Feedback::delete()
+            'feedback' => $this->elete()
         ]);
     }
 
@@ -33,5 +33,5 @@ class FeedbackController extends Controller
         echo $this->render('feedback', [
             'feedback' => Feedback::save()
         ]);
-    }*/
+    }
 }

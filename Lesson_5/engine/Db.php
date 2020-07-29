@@ -39,12 +39,12 @@ class Db
         return $pdoStatement;
     }
 
-    private function queryLimit($sql, $page)
+    public function queryLimit($sql, $page)
     {
         $pdoStatement = $this->getConnection()->prepare($sql);
-        $pdoStatement->bindValue(':page', $page, \PDO::PARAM_INT);
+        $pdoStatement->bindValue(1, $page, \PDO::PARAM_INT);
         $pdoStatement->execute();
-        return $pdoStatement;
+        return $pdoStatement->fetchAll();
     }
 
     private function prepareDSNString()
