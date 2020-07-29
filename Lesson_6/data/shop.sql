@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 25 2020 г., 21:54
+-- Время создания: Июл 29 2020 г., 18:40
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.4.5
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- База данных: `shop`
 --
-CREATE DATABASE IF NOT EXISTS `shop` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `shop`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +27,6 @@ USE `shop`;
 -- Структура таблицы `basket`
 --
 
-DROP TABLE IF EXISTS `basket`;
 CREATE TABLE `basket` (
   `id` int NOT NULL,
   `product` int NOT NULL,
@@ -43,29 +40,9 @@ CREATE TABLE `basket` (
 --
 
 INSERT INTO `basket` (`id`, `product`, `quantyti`, `price`, `session`) VALUES
-(3, 2, 1, '55', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(5, 2, 1, '55', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(7, 2, 1, '55', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(9, 20, 1, '1', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(10, 2, 1, '55', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(11, 3, 1, '100', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(12, 20, 1, '1', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(13, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(14, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(15, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(16, 3, 1, '100', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(17, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(19, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(20, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(21, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(22, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(23, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(24, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(25, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(28, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(29, 1, 1, '22', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(30, 1, 1, ' 22 ', 'sbft1l1u336m60slu52mdt7kft5so401'),
-(31, 20, 1, ' 1 ', 'sbft1l1u336m60slu52mdt7kft5so401');
+(42, 3, 1, '100', 'sbft1l1u336m60slu52mdt7kft5so401'),
+(45, 2, 1, '55', 'sbft1l1u336m60slu52mdt7kft5so401'),
+(46, 1, 1, '22', 'fph5ikm5tg74i3ko9msf2v5clbomppp2');
 
 -- --------------------------------------------------------
 
@@ -73,7 +50,6 @@ INSERT INTO `basket` (`id`, `product`, `quantyti`, `price`, `session`) VALUES
 -- Структура таблицы `feedback`
 --
 
-DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE `feedback` (
   `id` int NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -94,7 +70,6 @@ INSERT INTO `feedback` (`id`, `name`, `feedback`) VALUES
 -- Структура таблицы `products`
 --
 
-DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int NOT NULL,
   `name` text NOT NULL,
@@ -133,19 +108,19 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`) VALUES
 -- Структура таблицы `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int NOT NULL,
   `login` text NOT NULL,
-  `pass` text NOT NULL
+  `pass` text NOT NULL,
+  `hash` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `pass`) VALUES
-(1, 'admin', '123');
+INSERT INTO `users` (`id`, `login`, `pass`, `hash`) VALUES
+(1, 'admin', '$2y$10$mQQikjg/YuuFHZQTVoG5dOO4IVDEho1yZ6PsCGBOXGiLngjUJy0RC', '15384276505f2136004641d7.06892606');
 
 --
 -- Индексы сохранённых таблиц
@@ -183,7 +158,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `basket`
 --
 ALTER TABLE `basket`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `feedback`
