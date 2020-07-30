@@ -28,12 +28,17 @@ abstract class DbModel extends Model
         return Db::getInstance()->queryObject($sql, ["value" => $value], static::class);
     }
 
-    //TODO сделайте аналогичный метод getSummWhere
-
     public static function getCountWhere($field, $value) {
         $tableName = static::getTableName();
         $sql = "SELECT count(id) as count FROM {$tableName} WHERE `{$field}`=:value";
         return Db::getInstance()->queryOne($sql, ["value" => $value])['count'];
+    }
+
+    //TODO_ сделайте аналогичный метод getSummWhere
+    public static function getSummWhere($field, $value) {
+        $tableName = static::getTableName();
+        $sql = "SELECT sum(price) as sum FROM {$tableName} WHERE `{$field}`=:value";
+        return Db::getInstance()->queryOne($sql, ["value" => $value])['sum'];
     }
 
     public static function getAll()

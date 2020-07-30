@@ -1,0 +1,14 @@
+<h2>Каталог</h2>
+
+{% for item in catalog %}
+    <form action="/basket/buy" method="post">
+        <h2><a href="/product/card/?id={{ item.id }}">{{ item.name }}</a></h2>
+        <p> {{ item.description }} </p>
+        <p>Цена: {{ item.price }} </p>
+        <input type="hidden" name="product_price" value=" {{ item.price }} ">
+        <input type="hidden" name="product_id" value=" {{ item.id }} ">
+        <button type="submit" name="buy">Купить</button>
+    </form>
+    <hr>
+{% endfor %}
+<a href="/product/catalog/?page= {{ page }}">Далее</a>
