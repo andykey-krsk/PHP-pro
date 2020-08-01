@@ -36,13 +36,6 @@ class UserRepository extends Repository
         }
     }
 
-    public function makeHashAuth($user)
-    {
-        $this->hash = uniqid(rand(), true);
-        $this->save($user);
-        setcookie("hash", $this->hash, time() + 3600, '/');
-    }
-
     public function getEntityClass() {
         return Users::class;
     }

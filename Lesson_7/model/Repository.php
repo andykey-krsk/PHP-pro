@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\model;
-
 
 use app\engine\Db;
 use app\interfaces\IModel;

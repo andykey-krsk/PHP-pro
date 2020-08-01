@@ -8,7 +8,7 @@
             </p>
         </div>
     <? endforeach ?>
-    Всего: <span id="total"><?= 0 + $total_price ?></span> рублей.
+    Всего: <span id="summ"><?= $summ ?></span> рублей.
 <? else: ?>
     <p>Корзина пуста</p>
 <? endif ?>
@@ -31,7 +31,7 @@
                     });
                     const answer = await response.json();
                     document.getElementById('count').innerText = answer.count;
-                    document.getElementById('total').innerText = answer.total;
+                    document.getElementById('summ').innerText = answer.summ;
                     document.getElementById(id).remove();
                 }
             )();

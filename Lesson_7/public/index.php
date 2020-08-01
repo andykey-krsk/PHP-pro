@@ -15,8 +15,7 @@ use app\engine\Sessions;
 
 //include "../engine/Autoload.php";
 
-include "../vendor/Autoload.php";
-
+include ROOT . "/vendor/Autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
@@ -36,33 +35,10 @@ try {
         $controller->runAction($actionName);
     } else {
         //TODO киньте исключение
+
+        
         Die("Контроллер не существует!");
     }
-} catch (\PDOException $e) {
-    var_dump($e);
 } catch (\Exception $e) {
     var_dump($e);
 }
-die();
-
-//$product = new Product("Одежда", "Брендовая", 2);
-//$product->save();
-
-//$user = new Users("user", "4454");
-//$user->save();
-
-//$product = Product::getOne(3);
-//$product->delete();
-
-$product = Product::getOne(3);
-$product->price = 100;
-$product->save();
-
-//var_dump($product);
-//var_dump(get_class_methods($product));
-
-//$product->delete();
-
-//$users = new Users();
-//var_dump($users->getAll());
-

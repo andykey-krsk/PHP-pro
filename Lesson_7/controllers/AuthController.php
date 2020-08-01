@@ -14,8 +14,10 @@ class AuthController extends Controller
         $save = (new Request())->getParams()['save'];
         if ((new UserRepository())->auth($login, $pass)) {
             if ($save) {
-                $user = (new UserRepository())->getOneWhere('login', $login);
-                (new UserRepository())->makeHashAuth($user);
+                $user = (new UserRepository())->getOneWhere('login',$login);
+                $user->hash = uniqid(rand(), true);
+                (new UserRepository())->save($user);
+                setcookie("hash", $user->hash, time() + 3600, '/');
             }
             header("Location:" . $_SERVER['HTTP_REFERER']);
         } else {
