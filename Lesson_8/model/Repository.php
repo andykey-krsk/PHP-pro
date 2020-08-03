@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\model;
-
 
 use app\engine\App;
 use app\engine\Db;
@@ -31,13 +29,11 @@ abstract class Repository implements IModel
     }
 
     //TODO сделайте аналогичный метод getSummWhere
-
     public function getCountWhere($field, $value) {
         $tableName = $this->getTableName();
         $sql = "SELECT count(id) as count FROM {$tableName} WHERE `{$field}`=:value";
         return App::call()->db->queryOne($sql, ["value" => $value])['count'];
     }
-
 
     public function getAll()
     {
@@ -49,7 +45,6 @@ abstract class Repository implements IModel
     public function insert(Model $entity) {
         $params = [];
         $columns = [];
-
 
         foreach ($entity->props as $key => $value) {
 
@@ -66,9 +61,7 @@ abstract class Repository implements IModel
         App::call()->db->execute($sql, $params);
 
         $entity->id = App::call()->db->lastInsertId();
-
     }
-
 
     public function update(Model $entity) {
         $params = [];

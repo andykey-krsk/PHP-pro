@@ -21,6 +21,5 @@ final class CreateUserHash extends AbstractMigration
         $table = $this->table('users');
         $table->addColumn('hash', 'text')
             ->update();
-
     }
 }

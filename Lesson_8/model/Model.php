@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\model;
-
 
 abstract class Model
 {
@@ -12,7 +10,6 @@ abstract class Model
             $this->props[$name] = true;
             $this->$name = $value;
         }
-
     }
 
     public function __get($name)
@@ -21,13 +18,10 @@ abstract class Model
             return $this->$name;
         }
         return null;
-
     }
 
     public function __isset($name)
     {
        return isset($this->$name);
     }
-
-
 }

@@ -1,14 +1,11 @@
 <?php
 
-
 namespace app\engine;
-
 
 use app\model\repositories\BasketRepository;
 use app\model\repositories\ProductRepository;
 use app\model\repositories\UserRepository;
 use app\traits\Tsingletone;
-
 
 /**
  * Class App
@@ -41,7 +38,6 @@ class App
 
     public function runController()
     {
-
         $this->controller = $this->request->getControllerName() ?: 'product';
         $this->action = $this->request->getActionName();
 
@@ -68,7 +64,6 @@ class App
                 // т.к. не будут переданы параметры для конструктора
                 $reflection = new \ReflectionClass($class);
                 return $reflection->newInstanceArgs($params);
-
             }
         }
         return null;
@@ -85,5 +80,4 @@ class App
     {
         return $this->components->get($name);
     }
-
 }

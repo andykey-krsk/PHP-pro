@@ -6,7 +6,6 @@ use app\engine\App;
 
 class ProductController extends Controller
 {
-
     public function actionIndex()
     {
         echo $this->render('index');
@@ -14,9 +13,7 @@ class ProductController extends Controller
 
     public function actionCatalog()
     {
-        //$page = (int)$_GET['page'];
         $page = (int)App::call()->request->getParams()['page'];
-
         echo $this->render('catalog', [
             'catalog' => App::call()->productRepository->getLimit(($page + 1) * 2),
             'page' => ++$page
@@ -30,7 +27,4 @@ class ProductController extends Controller
             'product' => App::call()->productRepository->getOne($id)
         ]);
     }
-
-
-
 }

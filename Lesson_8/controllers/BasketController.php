@@ -1,13 +1,10 @@
 <?php
 
-
 namespace app\controllers;
-
 
 use app\engine\App;
 use app\engine\Sessions;
 use app\model\entities\Basket;
-
 
 class BasketController extends Controller
 {
@@ -24,15 +21,11 @@ class BasketController extends Controller
     public function actionBuy()
     {
         $id = (int)App::call()->request->getParams()['id'];
-
         $basket = new Basket(session_id(), $id);
-
         App::call()->basketRepository->save($basket);
-
         $response['count'] = App::call()->basketRepository->getCountWhere('session_id', session_id());
         echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
-
 
     public function actionDelete()
     {

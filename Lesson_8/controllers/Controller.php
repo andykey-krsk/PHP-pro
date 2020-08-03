@@ -1,12 +1,9 @@
 <?php
 
-
 namespace app\controllers;
-
 
 use app\engine\App;
 use app\interfaces\IRenderer;
-
 
 abstract class Controller
 {
@@ -16,12 +13,10 @@ abstract class Controller
     protected $useLayout = true;
     protected $renderer;
 
-
     public function __construct(IRenderer $renderer)
     {
         $this->renderer = $renderer;
     }
-
 
     public function runAction($action = null)
     {
@@ -48,12 +43,10 @@ abstract class Controller
         } else {
             return $this->renderTemplate($template, $params);
         }
-
     }
 
     public function renderTemplate($template, $params = [])
     {
         return $this->renderer->renderTemplate($template, $params);
     }
-
 }

@@ -19,7 +19,7 @@ return [
             'driver' => 'mysql',
             'host' => 'localhost',
             'login' => 'root',
-            'password' => 'root',
+            'password' => '12345',
             'database' => 'shop',
             'charset' => 'utf8'
         ],

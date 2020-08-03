@@ -1,16 +1,13 @@
 <?php
 
-
 namespace app\controllers;
-
 
 use app\engine\App;
 
-
 class AuthController extends Controller
 {
-    public function actionLogin() {
-
+    public function actionLogin()
+    {
         $login = App::call()->request->getParams()['login'];
         $pass = App::call()->request->getParams()['pass'];
 
@@ -30,5 +27,4 @@ class AuthController extends Controller
         setcookie('hash', '', time()-3600, '/');
         header("Location:" . $_SERVER['HTTP_REFERER']);
     }
-
 }

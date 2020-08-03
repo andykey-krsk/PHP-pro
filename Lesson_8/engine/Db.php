@@ -2,10 +2,8 @@
 
 namespace app\engine;
 
-
 class Db
 {
-
     private $config;
 
     private $connection = null;
@@ -22,7 +20,6 @@ class Db
 
     private function getConnection()
     {
-
         if (is_null($this->connection)) {
             $this->connection = new \PDO(
                 $this->prepareDSNString(),
@@ -42,7 +39,6 @@ class Db
         $pdoStatement->execute($params);
         return $pdoStatement;
     }
-
 
     public function queryLimit($sql, $page)
     {
@@ -86,10 +82,8 @@ class Db
         return $obj;
     }
 
-
     public function queryAll($sql, $params = [])
     {
         return $this->query($sql, $params)->fetchAll();
     }
-
 }
