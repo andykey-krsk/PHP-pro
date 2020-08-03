@@ -27,7 +27,8 @@ abstract class Controller
         if (method_exists($this, $method)) {
             $this->$method();
         } else {
-            Die("Экшн не существует.");
+            throw new \Exception("Экшн не существует.");
+            //Die("Экшн не существует.");
         }
     }
 

@@ -8,7 +8,7 @@ use app\model\entities\Users;
 class UserRepository extends Repository
 {
     public function isAuth() {
-        if (isset($_COOKIE["hash"])) {
+        if (isset($_COOKIE["hash"])&&(!isset($_SESSION['login']))) {
             $user =(new UserRepository())->getOneWhere('hash', $_COOKIE["hash"]);
             if (!empty($user->login)) {
                 $_SESSION['login'] = $user->login;

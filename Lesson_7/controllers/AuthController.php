@@ -21,7 +21,8 @@ class AuthController extends Controller
             }
             header("Location:" . $_SERVER['HTTP_REFERER']);
         } else {
-            die("Не верный логин-пароль.");
+            throw new \Exception("Не верный логин-пароль.");
+            //die("Не верный логин-пароль.");
         }
     }
 
